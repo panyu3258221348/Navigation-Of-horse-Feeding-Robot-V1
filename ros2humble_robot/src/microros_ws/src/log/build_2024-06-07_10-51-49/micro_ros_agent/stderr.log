@@ -1,0 +1,15 @@
+正克隆到 'xrceagent'...
+fatal: 无法访问 'https://github.com/eProsima/Micro-XRCE-DDS-Agent.git/'：GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+正克隆到 'xrceagent'...
+fatal: 无法访问 'https://github.com/eProsima/Micro-XRCE-DDS-Agent.git/'：Failed to connect to github.com port 443 after 21054 ms: 连接被拒绝
+正克隆到 'xrceagent'...
+error: RPC 失败。curl 7 GnuTLS recv error (-54): Error in the pull function.
+fatal: 在引用列表之后应该有一个 flush 包
+[31mCMake Error at /home/hell0/microros_ws/src/build/micro_ros_agent/agent/tmp/xrceagent-gitclone.cmake:31 (message):
+  Failed to clone repository:
+  'https://github.com/eProsima/Micro-XRCE-DDS-Agent.git'
+
+[0m
+gmake[2]: *** [CMakeFiles/xrceagent.dir/build.make:99：agent/src/xrceagent-stamp/xrceagent-download] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:85：CMakeFiles/xrceagent.dir/all] 错误 2
+gmake: *** [Makefile:91：all] 错误 2

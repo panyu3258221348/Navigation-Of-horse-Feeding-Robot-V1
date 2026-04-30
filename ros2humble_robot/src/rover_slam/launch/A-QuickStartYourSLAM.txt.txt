@@ -1,0 +1,63 @@
+
+Quick Start Your SLAM
+
+Please execute the following commands in order:
+
+
+
+rtabmap：
+
+
+*************************** Mapping **********************************
+
+1.start base node :
+
+ros2 launch rover_bringup robot.launch.py
+
+2.start mapping node:
+
+ros2 launch rover_slam rover_map_icp_odom_rviz_launch.py
+
+
+******************************Navigation********************************
+
+ros2 launch rover_slam rover_nav_icp_odom_rviz_launch.py
+
+
+
+
+
+Cartgrapher：
+
+*************************** Mapping **********************************
+
+1.start base node :
+
+ros2 launch rover_bringup robot_with_tf.launch.py
+
+2.start mapping node:
+
+ros2 launch rover_slam rover_map_cartgrapher_launch.py
+
+3.save map
+
+ros2 run nav2_map_server map_saver_cli
+
+
+******************************Navigation********************************
+
+ros2 launch rover_slam rover_nav_cartgrapher_launch.py
+
+
+
+Fast Lio2：
+
+*************************** Mapping **********************************
+
+1.start base node :
+
+ros2 launch rover_bringup robot_with_custom.launch.py
+
+2.start mapping node:
+
+ros2 launch rover_slam rover_map_fast_lio_launch.py

@@ -1,0 +1,125 @@
+### ekf config file ###
+ekf_filter_node:
+  ros__parameters:
+    frequency: 20.0
+    sensor_timeout: 0.1
+    two_d_mode: true
+    transform_time_offset: 0.0
+    transform_timeout: 0.0
+    print_diagnostics: true
+    debug: false
+    debug_out_file: /home/nuc001/catkin_ws6/src/rover_base_driver_ros2/rover_bringup/params/ekf_debug.txt
+    permit_corrected_publication: false
+
+    publish_acceleration: false
+    publish_tf: true
+
+    map_frame: map                  # Defaults to "map" if unspecified
+    odom_frame: odom                # Defaults to "odom" if unspecified
+    base_link_frame: base_footprint # Defaults to "base_link" if unspecified
+    world_frame: odom               # Defaults to the value of odom_frame if unspecified
+
+    #x     , y     , z,
+    #roll  , pitch , yaw,
+    #vx    , vy    , vz,
+    #vroll , vpitch, vyaw,
+    #ax    , ay    , az
+
+    odom0: /raw_odom
+    odom0_config: [false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  false, false, false]
+
+    odom0_queue_size: 2
+    odom0_nodelay: true
+    odom0_differential: false # Infer velocity from position, and fuse that velocity instead
+    odom0_relative: true     # Readings from the sensor will be fused relative to the first measurement
+    odom0_pose_rejection_threshold: 10.0
+    odom0_twist_rejection_threshold: 15.0
+
+    # 添加ICP里程计输入
+    odom1: /icp_odom
+    odom1_config: [false, false, false,
+                  false, false, true,
+                  true, true, false,
+                  false, false, true,
+                  false, false, false]
+    odom1_queue_size: 2
+    odom1_nodelay: true
+    odom1_differential: false
+    odom1_relative: true
+    odom1_pose_rejection_threshold: 5.0
+    odom1_twist_rejection_threshold: 9.0
+
+    # 添加FAST_LIO里程计输入
+    odom2: /synced_odom
+    odom2_config: [true, true, false,
+                  false, false, false,
+                  true, true, false,
+                  false, false, false,
+                  false, false, false]
+    odom2_queue_size: 9
+    odom2_nodelay: true
+    odom2_differential: false
+    odom2_relative: true
+    odom2_pose_rejection_threshold: 5.0
+    odom2_twist_rejection_threshold: 10.0
+
+    imu0: /synced_imu
+    imu0_config: [false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  true, true, false]
+                  
+    imu0_nodelay: true
+    imu0_differential: false
+    imu0_relative: true
+    imu0_queue_size: 5
+    imu0_pose_rejection_threshold: 80.0
+    imu0_twist_rejection_threshold: 80.0
+    imu0_linear_acceleration_rejection_threshold: 80.0
+    imu0_remove_gravitational_acceleration: true
+
+    use_control: false
+    stamped_control: false
+    control_timeout: 0.2
+    control_config: [true, true, false, false, false, true]
+    acceleration_limits: [3.0, 0.0, 0.0, 0.0, 0.0, 5.0]
+    deceleration_limits: [3.0, 0.0, 0.0, 0.0, 0.0, 5.0]
+    acceleration_gains: [2.0, 0.0, 0.0, 0.0, 0.0, 0.9]
+    deceleration_gains: [2.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+
+    process_noise_covariance: [0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.03, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.03, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.04, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.025, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.025, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.04, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.02, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.015]
+    initial_estimate_covariance: [1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-3, 0.0, 0.0, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-3, 0.0,
+                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1e-3]
+
+

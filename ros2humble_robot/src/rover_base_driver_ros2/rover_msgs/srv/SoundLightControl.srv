@@ -1,0 +1,20 @@
+uint8 LIGHT_STATUS_OFF = 0
+uint8 LIGHT_STATUS_ON = 1
+uint8 LIGHT_STATUS_FLICKER = 2
+uint8 LIGHT_STATUS_LEFT_FLICKER = 3
+uint8 LIGHT_STATUS_RIGHT_FLICKER = 4
+uint8 LIGHT_STATUS_CHASE = 5
+
+uint8 BEEP_STATUS_OFF = 0
+uint8 BEEP_STATUS_ON = 1
+
+uint8 HEADLIGHT_STATUS_OFF = 0
+uint8 HEADLIGHT_STATUS_ON = 1
+
+uint8 light_status
+uint8[3] light_rgb_color
+bool beep_status
+bool headlight_status
+
+---
+bool success

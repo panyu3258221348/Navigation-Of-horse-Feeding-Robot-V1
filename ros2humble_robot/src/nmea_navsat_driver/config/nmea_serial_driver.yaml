@@ -1,0 +1,7 @@
+nmea_navsat_driver:
+  ros__parameters:
+    port: "/dev/rtk"
+    baud: 115200
+    frame_id: "rtk_link"
+    time_ref_source: "gps"
+    useRMC: False

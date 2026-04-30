@@ -1,0 +1,18 @@
+imu_straight_controller:
+  ros__parameters:
+    target_speed: -0.14
+    max_steering: 0.5
+    target_angle: 0.0
+    angle_kp: 165.5
+    angle_ki: 0.07
+    angle_kd: 30.13
+    angle_integral_limit: 10.5
+    angular_vel_kp: -0.03
+    angular_vel_ki: 0.00000
+    angular_vel_kd: -0.01
+    angular_vel_integral_limit: 1.0
+    angle_filter_window: 7
+    angular_vel_filter_window: 5
+    rotation_matrix: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+    imu_topic: "/imu/data1"
+    cmd_vel_topic: "/cmd_vel_1"

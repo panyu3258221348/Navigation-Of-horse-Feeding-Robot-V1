@@ -1,0 +1,5 @@
+int32 param1
+int32 param2
+bool isflag
+---
+int32 result
